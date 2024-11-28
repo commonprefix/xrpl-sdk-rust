@@ -61,7 +61,7 @@ impl SubmitRequest {
     }
 }
 
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SubmitResponse {
     pub engine_result: TransactionResult,
     pub engine_result_code: i32,
