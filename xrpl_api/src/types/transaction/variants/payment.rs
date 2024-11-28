@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 use xrpl_types::PaymentFlags;
 
 /// An `Payment` transaction <https://xrpl.org/payment.html>
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Default, Debug, Clone, Deserialize, Serialize, PartialEq)]
 #[serde(rename_all = "PascalCase")]
 pub struct PaymentTransaction {
     #[serde(flatten)]
