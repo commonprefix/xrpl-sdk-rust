@@ -141,6 +141,9 @@ mod test {
     "Account": "rMmTCjGFRWPz8S2zAUUoNVSQHxtRQD4eCx",
     "Sequence": 2,
     "Fee": "12",
+    "Signers": [
+        "rMmTCjGFRWPz8S2zAUUoNVSQHxtRQD4eCx"
+    ],
     "Memos": [
         {
             "Memo": {
@@ -163,6 +166,10 @@ mod test {
             tx.memos.as_ref().unwrap()[0].memo_data.as_deref(),
             Some("72656e74")
         );
+        assert_eq!(
+            tx.signers.as_ref(),
+            Some(&vec!["rMmTCjGFRWPz8S2zAUUoNVSQHxtRQD4eCx".to_string()])
+        );
     }
 
     #[test]
@@ -183,6 +190,7 @@ mod test {
             network_id: None,
             source_tag: None,
             signing_pub_key: None,
+            signers: None,
             ticket_sequence: None,
             txn_signature: None,
             date: None,
