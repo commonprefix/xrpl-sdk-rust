@@ -21,6 +21,8 @@ pub struct TransactionCommon {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub signing_pub_key: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub signers: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub ticket_sequence: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub txn_signature: Option<String>,
