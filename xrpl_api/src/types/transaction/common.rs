@@ -1,4 +1,4 @@
-use crate::{types::Meta, types::Signer};
+use crate::{types::Meta, types::SignerWrapper};
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use xrpl_types::LedgerTimestamp;
 
@@ -21,7 +21,7 @@ pub struct TransactionCommon {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub signing_pub_key: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub signers: Option<Vec<Signer>>,
+    pub signers: Option<Vec<SignerWrapper>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub ticket_sequence: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -126,7 +126,7 @@ impl Serialize for Memo {
 
 #[cfg(test)]
 mod test {
-    use crate::{Memo, Signer, TransactionCommon};
+    use crate::{Memo, Signer, SignerWrapper, TransactionCommon};
 
     fn remove_whitespace(s: &str) -> String {
         let mut s = s.to_string();
@@ -141,13 +141,13 @@ mod test {
     "Account": "rMmTCjGFRWPz8S2zAUUoNVSQHxtRQD4eCx",
     "Sequence": 2,
     "Fee": "12",
-    "Signers": [
-        {
+    "Signers": [{
+        "Signer": {
             "Account":"r3BtAa7nxrxWW7AvV5M1krJSz1GL5HqpWJ",
             "SigningPubKey":"036F3CFFE1EA77C1EEC5DCCA38C83E62E3AC068F8A16369620AF1D609BA5A620B2",
             "TxnSignature":"3045022100D149F710194BDF0671E12961E4AB7A97A7A3D748934944AFB7AF0D56D1A2DF110220364E498664CB693ED0EDDF546C53BAA5213C8C9711674CB0A1048F0F06E52A62"
         }
-    ],
+    }],
     "Memos": [
         {
             "Memo": {
@@ -172,11 +172,17 @@ mod test {
         );
         assert_eq!(
             tx.signers.as_ref(),
-            Some(&vec![Signer {
-                account: "r3BtAa7nxrxWW7AvV5M1krJSz1GL5HqpWJ".to_string(),
-                signing_pub_key: "036F3CFFE1EA77C1EEC5DCCA38C83E62E3AC068F8A16369620AF1D609BA5A620B2".to_string(),
-                txn_signature: "3045022100D149F710194BDF0671E12961E4AB7A97A7A3D748934944AFB7AF0D56D1A2DF110220364E498664CB693ED0EDDF546C53BAA5213C8C9711674CB0A1048F0F06E52A62".to_string()
-            }])
+            Some(
+                &vec![
+                    SignerWrapper {
+                        signer: Signer {
+                            account: "r3BtAa7nxrxWW7AvV5M1krJSz1GL5HqpWJ".to_string(),
+                            signing_pub_key: "036F3CFFE1EA77C1EEC5DCCA38C83E62E3AC068F8A16369620AF1D609BA5A620B2".to_string(),
+                            txn_signature: "3045022100D149F710194BDF0671E12961E4AB7A97A7A3D748934944AFB7AF0D56D1A2DF110220364E498664CB693ED0EDDF546C53BAA5213C8C9711674CB0A1048F0F06E52A62".to_string()
+                        }
+                    }
+                ]
+            )
         );
     }
 

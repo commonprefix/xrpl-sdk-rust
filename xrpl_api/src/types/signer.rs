@@ -7,3 +7,9 @@ pub struct Signer {
     pub signing_pub_key: String,
     pub txn_signature: String,
 }
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "PascalCase")]
+pub struct SignerWrapper {
+    pub signer: Signer,
+}
