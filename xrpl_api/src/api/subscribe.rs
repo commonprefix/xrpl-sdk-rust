@@ -9,19 +9,19 @@ use serde::{Deserialize, Serialize};
 #[derive(Default, Debug, Clone, Serialize)]
 pub struct SubscribeRequest {
     #[serde(skip_serializing_if = "Option::is_none")]
-    streams: Option<Vec<String>>,
+    pub streams: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    accounts: Option<Vec<String>>,
+    pub accounts: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    accounts_proposed: Option<Vec<String>>,
+    pub accounts_proposed: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    books: Option<Vec<Book>>,
+    pub books: Option<Vec<Book>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    url: Option<String>,
+    pub url: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    url_username: Option<String>,
+    pub url_username: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    url_password: Option<String>,
+    pub url_password: Option<String>,
 }
 
 /// A book on the ledger.
