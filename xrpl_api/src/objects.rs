@@ -1,11 +1,13 @@
 mod account_root;
 mod offer;
 mod ripple_state;
+mod ticket;
 
 pub use account_root::*;
 pub use offer::*;
 pub use ripple_state::*;
 use serde::Deserialize;
+use ticket::Ticket;
 
 /// Any ledger object. See <https://xrpl.org/ledger-object-types.html>
 #[derive(Debug, Clone, Deserialize)]
@@ -27,5 +29,5 @@ pub enum LedgerObject {
     PayChannel,
     RippleState(RippleState),
     SignerList,
-    Ticket,
+    Ticket(Ticket),
 }
