@@ -7,7 +7,7 @@ pub use account_root::*;
 pub use offer::*;
 pub use ripple_state::*;
 use serde::Deserialize;
-use ticket::Ticket;
+pub use ticket::*;
 
 /// Any ledger object. See <https://xrpl.org/ledger-object-types.html>
 #[derive(Debug, Clone, Deserialize)]
