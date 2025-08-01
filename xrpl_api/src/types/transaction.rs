@@ -18,6 +18,7 @@ pub use variants::trust_set::*;
 pub enum Transaction {
     AccountDelete(AccountDeleteTransaction),
     AccountSet(AccountSetTransaction),
+    AMMCreate(TransactionCommon),
     // TODO add model for remaining transactions
     CheckCancel(TransactionCommon),
     CheckCash(TransactionCommon),
@@ -52,6 +53,7 @@ impl Transaction {
             Transaction::OfferCreate(t) => &t.common,
             Transaction::Payment(t) => &t.common,
             Transaction::TrustSet(t) => &t.common,
+            Transaction::AMMCreate(t) => t,
             Transaction::CheckCancel(t) => t,
             Transaction::CheckCash(t) => t,
             Transaction::CheckCreate(t) => t,
@@ -83,6 +85,7 @@ impl Transaction {
             Transaction::OfferCreate(t) => &mut t.common,
             Transaction::Payment(t) => &mut t.common,
             Transaction::TrustSet(t) => &mut t.common,
+            Transaction::AMMCreate(t) => t,
             Transaction::CheckCancel(t) => t,
             Transaction::CheckCash(t) => t,
             Transaction::CheckCreate(t) => t,
