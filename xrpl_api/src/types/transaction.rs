@@ -1,7 +1,7 @@
 mod common;
 mod variants;
 
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 pub use common::*;
 
@@ -19,6 +19,7 @@ pub enum Transaction {
     AccountDelete(AccountDeleteTransaction),
     AccountSet(AccountSetTransaction),
     AMMCreate(TransactionCommon),
+    AMMDeposit(TransactionCommon),
     // TODO add model for remaining transactions
     CheckCancel(TransactionCommon),
     CheckCash(TransactionCommon),
@@ -54,6 +55,7 @@ impl Transaction {
             Transaction::Payment(t) => &t.common,
             Transaction::TrustSet(t) => &t.common,
             Transaction::AMMCreate(t) => t,
+            Transaction::AMMDeposit(t) => t,
             Transaction::CheckCancel(t) => t,
             Transaction::CheckCash(t) => t,
             Transaction::CheckCreate(t) => t,
@@ -86,6 +88,7 @@ impl Transaction {
             Transaction::Payment(t) => &mut t.common,
             Transaction::TrustSet(t) => &mut t.common,
             Transaction::AMMCreate(t) => t,
+            Transaction::AMMDeposit(t) => t,
             Transaction::CheckCancel(t) => t,
             Transaction::CheckCash(t) => t,
             Transaction::CheckCreate(t) => t,
