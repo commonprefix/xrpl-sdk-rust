@@ -47,6 +47,8 @@ pub enum TrustSetFlags {
     ClearNoRipple = 0x00040000,
     SetFreeze = 0x00100000,
     ClearFreeze = 0x00200000,
+    SetDeepFreeze = 0x00400000,
+    ClearDeepFreeze = 0x00800000,
 }
 
 impl Serialize for TrustSetTransaction {
