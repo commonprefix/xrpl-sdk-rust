@@ -37,6 +37,7 @@ impl Transaction for AccountDeleteTransaction {
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub enum AccountDeleteFlags {
     FullyCanonicalSig = 0x80000000,
+    InnerBatchTxn = 0x40000000,
 }
 
 impl Serialize for AccountDeleteTransaction {

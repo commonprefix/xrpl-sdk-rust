@@ -46,6 +46,7 @@ impl Transaction for PaymentTransaction {
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub enum PaymentFlags {
     FullyCanonicalSig = 0x80000000,
+    InnerBatchTxn = 0x40000000,
     NoDirectRipple = 0x00010000,
     PartialPayment = 0x00020000,
     LimitQuality = 0x00040000,

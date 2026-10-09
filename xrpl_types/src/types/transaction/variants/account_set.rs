@@ -78,6 +78,7 @@ pub enum AccountSetFlag {
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub enum AccountSetTransactionFlags {
     FullyCanonicalSig = 0x80000000,
+    InnerBatchTxn = 0x40000000,
     RequireDestTag = 0x00010000,
     OptionalDestTag = 0x00020000,
     RequireAuth = 0x00040000,

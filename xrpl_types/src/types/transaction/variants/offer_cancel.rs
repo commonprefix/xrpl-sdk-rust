@@ -35,6 +35,7 @@ impl Transaction for OfferCancelTransaction {
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub enum OfferCancelFlags {
     FullyCanonicalSig = 0x80000000,
+    InnerBatchTxn = 0x40000000,
 }
 
 impl Serialize for OfferCancelTransaction {
