@@ -24,6 +24,7 @@ pub enum Transaction {
     AMMVote(TransactionCommon),
     AMMBid(TransactionCommon),
     AMMDelete(TransactionCommon),
+    Batch(TransactionCommon),
     // TODO add model for remaining transactions
     CheckCancel(TransactionCommon),
     CheckCash(TransactionCommon),
@@ -64,6 +65,7 @@ impl Transaction {
             Transaction::AMMVote(t) => t,
             Transaction::AMMBid(t) => t,
             Transaction::AMMDelete(t) => t,
+            Transaction::Batch(t) => t,
             Transaction::CheckCancel(t) => t,
             Transaction::CheckCash(t) => t,
             Transaction::CheckCreate(t) => t,
@@ -101,6 +103,7 @@ impl Transaction {
             Transaction::AMMVote(t) => t,
             Transaction::AMMBid(t) => t,
             Transaction::AMMDelete(t) => t,
+            Transaction::Batch(t) => t,
             Transaction::CheckCancel(t) => t,
             Transaction::CheckCash(t) => t,
             Transaction::CheckCreate(t) => t,

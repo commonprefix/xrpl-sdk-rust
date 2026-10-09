@@ -42,6 +42,7 @@ impl Transaction for OfferCreateTransaction {
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub enum OfferCreateFlags {
     FullyCanonicalSig = 0x80000000,
+    InnerBatchTxn = 0x40000000,
     Passive = 0x00010000,
     ImmediateOrCancel = 0x00020000,
     FillOrKill = 0x00040000,

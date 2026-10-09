@@ -26,6 +26,7 @@ pub struct PaymentTransaction {
 #[cfg(test)]
 mod test {
     use crate::PaymentTransaction;
+    use xrpl_types::PaymentFlags;
 
     #[test]
     fn test_payment_deserialize() {
@@ -46,5 +47,34 @@ mod test {
         "#;
 
         let _: PaymentTransaction = serde_json::from_str(json).unwrap();
+    }
+
+    #[test]
+    fn test_inner_batch_payment_deserialize() {
+        // mainnet B17E9C28D28FD708CF13AFA5193EF9B4A9B0175D168AED5C0C9036F55BA4BEBE (ledger 107541479):
+        // inner Batch transaction (XLS-56) with tfInnerBatchTxn | tfPartialPayment | tfNoRippleDirect.
+        let json = r#"
+{
+  "TransactionType": "Payment",
+  "Account": "rBqUZzPRcVus1phirwuPd7f6QJQQsCdyax",
+  "Destination": "rBqUZzPRcVus1phirwuPd7f6QJQQsCdyax",
+  "Amount": {
+    "currency": "5245414C00000000000000000000000000000000",
+    "issuer": "rKVyXn1AhqMTvNA9hS6XkFjQNn2VE8Nz88",
+    "value": "9999999999999990e-1"
+  },
+  "SendMax": "1273679",
+  "Fee": "0",
+  "Flags": 1073938432,
+  "Sequence": 0,
+  "SigningPubKey": "",
+  "TicketSequence": 107285947
+}
+        "#;
+
+        let tx: PaymentTransaction = serde_json::from_str(json).unwrap();
+        assert!(tx.flags.contains(PaymentFlags::InnerBatchTxn));
+        assert!(tx.flags.contains(PaymentFlags::PartialPayment));
+        assert!(tx.flags.contains(PaymentFlags::NoDirectRipple));
     }
 }

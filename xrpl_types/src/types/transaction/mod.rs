@@ -60,6 +60,7 @@ pub enum TransactionType {
     XChainCreateBridge = 48,
     DIDSet = 49,
     DIDDelete = 50,
+    Batch = 71,
     EnableAmendment = 100,
     SetFee = 101,
     UNLModify = 102,
